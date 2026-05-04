@@ -14,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _emailController = TextEditingController(text: 'eleanor@example.com');
+  final _emailController = TextEditingController(text: '@example.com');
   final _passwordController = TextEditingController(text: '••••••••');
   bool _loading = false;
 
@@ -27,8 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _handleLogin() async {
     setState(() => _loading = true);
-    await Future.delayed(const Duration(milliseconds: 800));
-    if (mounted) widget.onLogin();
+    await Supabase.instance.client.auth.signInWithPassword(
+            email: _emailController.text,
+            password: _passwordController.text,
+       );
   }
 
   @override

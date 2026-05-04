@@ -122,7 +122,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  BookCover(book: kBooks[4], width: 96, height: 140),
+                  BookCover(book: BookRepository().getMyBooks()[0], width: 96, height: 140),
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(
@@ -134,12 +134,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          kBooks[4].title,
+                          BookRepository().getMyBooks()[0].title,
                           style: editorialStyle(C.ink, size: 22, italic: false)
                               .copyWith(height: 1.1),
                         ),
                         Text(
-                          'by ${kBooks[4].author}',
+                          'by ${BookRepository().getMyBooks()[0].author}',
                           style: editorialStyle(C.inkSoft, size: 12.5),
                         ),
                         const Spacer(),
@@ -147,7 +147,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'page 124 of ${kBooks[4].pages}',
+                              'page 124 of ${BookRepository().getMyBooks()[0].pages}',
                               style: bodyStyle(C.inkMute, size: 11),
                             ),
                             Text('35%', style: bodyStyle(C.inkMute, size: 11)),
@@ -184,7 +184,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             ),
             delegate: SliverChildBuilderDelegate(
               (context, i) {
-                final b = kBooks[i];
+                final b = BookRepository().getMyBooks()[i];
                 return GestureDetector(
                   onTap: () => widget.onOpenBook(b.id),
                   child: Column(
@@ -208,7 +208,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   ),
                 );
               },
-              childCount: kBooks.length,
+              childCount: BookRepository().getMyBooks().length,
             ),
           ),
         ),
